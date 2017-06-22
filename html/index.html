@@ -42,18 +42,18 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="panel panel-info">
                         <div class="panel-heading">Live Stream</div>
                         <div class="panel-body">
-                            <img src="" width="640" height="480"/>
+                            <img src="" width="320" height="240"/>
                         </div>
                         <ul class="list-group">
                             <li class="list-group-item">Temperature: Humidity: </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="panel panel-info">
                         <div class="panel-heading">Motion Events</div>
                         <!--<div class="panel-body">
@@ -74,5 +74,13 @@
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect();
+      socket.on('Test', function(data){
+        console.log(data);
+      });
+      
+    </script>
   </body>
 </html>
