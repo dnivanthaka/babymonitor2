@@ -40,25 +40,39 @@
      </div>
     </div>
     </nav>
-    <div class="container" style="width: 672px">
+    <div class="container-fluid">
         <div class="row">
-                <div class="panel panel-default">
-                <div class="panel-body">
-                        <img src="" width="640" height="480"/>
+                <div class="col-md-8">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Live Stream</div>
+                        <div class="panel-body">
+                            <img src="" width="640" height="480"/>
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item">Temperature: Humidity: </li>
+                        </ul>
+                    </div>
                 </div>
-                </div>
-        </div>
-<div class="row">
-                <div class="panel panel-default">
-                <div class="panel-body">
-                        <img src="" width="640" height="480"/>
-                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Motion Events</div>
+                        <!--<div class="panel-body">
+                        </div>-->
+                        <ul class="list-group">
+                            <li class="list-group-item"><h3>Date/Time</h3></li>
+                            <li class="list-group-item">
+                                <ul>
+                                    <li>Event 1</li>
+                                    <li>Event 2</li>
+                                    <li>Event 3</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!--<script src="js/bootstrap.min.js"></script>-->
+    <script src="js/jquery.min.js"></script>
   </body>
 </html>
