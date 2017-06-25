@@ -5,11 +5,21 @@ var express = require('express');
 var app = express();
 var sockIo = require('socket.io');
 
+var am2320 = require('./am2320.js');
+
 
 app.use(express.static('html'));
 app.get('/', function(req, res){
     res.end();
 });
+
+// AM2320 Data as json object
+var am2320Data = null;
+am2320Data = JSON.parse(am2320.readValues());
+
+setInterval(function(){
+    am2320Data = JSON.parse(am2320.readValues());
+}, 60000);
 
 
 var server = app.listen(8080, '0.0.0.0', function(){
@@ -22,6 +32,6 @@ var server = app.listen(8080, '0.0.0.0', function(){
 var listener = sockIo.listen(server);
 listener.on('connection', function(socket){
     setInterval(function(){
-        socket.emit("Test", "123");
+        socket.emit("envData", am2320Data);
     }, 2000);
 });
