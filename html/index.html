@@ -46,7 +46,7 @@
                     <div class="panel panel-info">
                         <div class="panel-heading">Live Stream</div>
                         <div class="panel-body">
-                            <img src="" width="320" height="240"/>
+                            <img src="" width="320" height="240" id="liveStream"/>
                         </div>
                         <ul class="list-group">
                             <li class="list-group-item">Temperature: <span id="envTemp"></span>&deg;C Humidity: <span id="envHum"></span></li>
@@ -83,6 +83,18 @@
         $('#envHum').html(data.humid);
       });
       
+    </script>
+    <script>
+	window.onload = function(){
+		var url = window.location.href;
+		var host = url.substring(0, url.lastIndexOf("/")).substring(0, url.lastIndexOf(":"));
+		var img = document.getElementById("liveStream");
+		img.src = host+":9090/stream/video.mjpeg";
+		//startVibrate(1000);
+		//updateMotionStatus();
+		//setTimeout(function(){soundAlarm()}, 5000);
+		//setInterval(function(){updateMotionStatus();updateTemperature();}, 5000);
+	}
     </script>
   </body>
 </html>
