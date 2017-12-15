@@ -8,22 +8,39 @@ var sockIo = require('socket.io');
 var am2320 = require('./am2320.js');
 var pir = require('./pir.js');
 
-var motion = {
-        this.state = 0;
-};
-
-motion.update = function(newstate){
-        this.state = newstate;
-        console.log('Motion event ' + this.state);
-}
-
-
 app.use(express.static('html'));
 app.get('/', function(req, res){
     res.end();
 });
 
-pir.setup(motion.update);
+var motionEvents = [];
+const MAXEVENTS  = 64;
+var motionEventTail = 0;
+var motionEventHead = 0;
+
+function pushEvent(newstate){
+        if(newstate == 1){
+            motionEventHead = (motionEventHead + 1) % MAXEVENTS;
+            //motionEvents.push(new Date());
+            motionEvents[motionEventHead] = new Date();
+            //Append to file or google sheet
+        } 
+        console.log('Motion event ' + newstate);
+}
+
+function popEvent(){
+    if(motionEventTail == motionEventHead){
+        return null;
+    }
+
+    var ret = motionEvents[motionEventTail];
+    motionEventTail = (motionEventTail + 1) % MAXEVENTS;
+    return ret;
+}
+
+
+
+pir.setup(pushEvent);
 
 // AM2320 Data as json object
 var am2320Data = null;
