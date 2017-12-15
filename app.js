@@ -62,5 +62,10 @@ var listener = sockIo.listen(server);
 listener.on('connection', function(socket){
     setInterval(function(){
         socket.emit("envData", am2320Data);
+    }, 5000);
+    setInterval(function(){
+	for(var i=0;i<motionEvents.length;i++){
+		socket.emit("motionData", "1");
+	}
     }, 2000);
 });

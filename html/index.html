@@ -82,6 +82,9 @@
         $('#envTemp').html(data.temp);
         $('#envHum').html(data.humid);
       });
+      socket.on('motionData', function(data){
+	console.log(data);
+      });
       
     </script>
     <script>

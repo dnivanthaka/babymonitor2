@@ -3,7 +3,8 @@ var rpio = require('rpio');
 
 rpio.init({mapping: 'physical'});
 
-const PIRPIN = 3;
+//const PIRPIN = 12;
+const PIRPIN = 13
 /*const gpioSysFs = "/sys/class/gpio/";
 
 //Settingup GPIO
