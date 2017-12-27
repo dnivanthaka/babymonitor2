@@ -25,7 +25,7 @@ function pushEvent(newstate){
             motionEvents[motionEventHead] = new Date();
             //Append to file or google sheet
         } 
-        console.log('Motion event ' + newstate);
+        //console.log('Motion event ' + newstate);
 }
 
 function popEvent(){
