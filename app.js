@@ -7,6 +7,7 @@ var sockIo = require('socket.io');
 
 var am2320 = require('./am2320.js');
 var pir = require('./pir.js');
+var hb = require('./heartbeat.js');
 
 app.use(express.static('html'));
 app.get('/', function(req, res){
@@ -41,6 +42,7 @@ function popEvent(){
 
 
 pir.setup(pushEvent);
+hb.setup();
 
 // AM2320 Data as json object
 var am2320Data = null;
@@ -49,6 +51,14 @@ am2320Data = JSON.parse(am2320.readValues());
 setInterval(function(){
     am2320Data = JSON.parse(am2320.readValues());
 }, 60000);
+
+//Heartbeat indicator
+setInterval(function(){
+    hb.toggle();
+    setTimeout(function(){
+        hb.toggle();
+    }, 2000);
+}, 5000);
 
 
 var server = app.listen(8080, '0.0.0.0', function(){
