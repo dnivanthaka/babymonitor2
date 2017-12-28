@@ -8,10 +8,18 @@ var sockIo = require('socket.io');
 var am2320 = require('./am2320.js');
 var pir = require('./pir.js');
 var hb = require('./heartbeat.js');
+var control = require('./control.js');
 
 app.use(express.static('html'));
 app.get('/', function(req, res){
     res.end();
+});
+app.get('/shutdown', function(req, res){
+	//console.log('Shutdown recieved');
+	control.shutdown();
+});
+app.get('/restart', function(req, res){
+	control.restart();
 });
 
 var motionEvents = [];
@@ -70,9 +78,11 @@ var server = app.listen(8080, '0.0.0.0', function(){
 
 var listener = sockIo.listen(server);
 listener.on('connection', function(socket){
+    //Initially send data
+    socket.emit("envData", am2320Data);
     setInterval(function(){
         socket.emit("envData", am2320Data);
-    }, 5000);
+    }, 10000);
     setInterval(function(){
 	for(var i=0;i<motionEvents.length;i++){
 		socket.emit("motionData", "1");
