@@ -55,10 +55,10 @@ setInterval(function(){
 //Heartbeat indicator
 setInterval(function(){
     hb.toggle();
-    setTimeout(function(){
+    /*setTimeout(function(){
         hb.toggle();
-    }, 2000);
-}, 5000);
+    }, 1000);*/
+}, 1000);
 
 
 var server = app.listen(8080, '0.0.0.0', function(){
