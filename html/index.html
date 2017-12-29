@@ -123,8 +123,8 @@
 		//setTimeout(function(){soundAlarm()}, 5000);
 		//setInterval(function(){updateMotionStatus();updateTemperature();}, 5000);
                 $('.deviceControl').on('click', function(e){
-                        var action = this.html();
-                        var endPoint = this.data('endPoint');
+                        var action = $(this).html();
+                        var endPoint = $(this).data('endPoint');
 
                         if(!confirm('Are you sure you want to '+action+' ?')){
                                  e.preventDefault();
