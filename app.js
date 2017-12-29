@@ -28,7 +28,7 @@ app.get('/restart', function(req, res){
 });
 app.get('/restartService', function(req, res){
 	control.restartService();
-        res.send('{"state": "success"}');
+        res.send('{state: "success"}');
         
 
 });
