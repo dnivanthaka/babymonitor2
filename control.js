@@ -14,10 +14,11 @@ module.exports = {
 		exec('sudo shutdown -h now', (error, stdout, stderr) => {
   			if (error) {
     				console.error(`exec error: ${error}`);
-    			return;
-  		}
-  		console.log(`stdout: ${stdout}`);
-  		console.log(`stderr: ${stderr}`);
+    				return;
+  			}
+  			console.log(`stdout: ${stdout}`);
+  			console.log(`stderr: ${stderr}`);
+			//return true;
 		});
 
 	},
@@ -25,10 +26,21 @@ module.exports = {
 		exec('sudo shutdown -r now', (error, stdout, stderr) => {
                         if (error) {
                                 console.error(`exec error: ${error}`);
-                        return;
-                }
-                console.log(`stdout: ${stdout}`);
-                console.log(`stderr: ${stderr}`);
+                        	return;
+                	}
+                	console.log(`stdout: ${stdout}`);
+                	console.log(`stderr: ${stderr}`);
+			//return true;
                 });
+	},
+	restartService: function(){
+		exec('sudo service uv4l_raspicam restart', (error, stdout, stderr) => {
+			if (error) {
+                                console.error(`exec error: ${error}`);
+                        	return;
+			}
+
+			//return true;
+		});
 	}
 };

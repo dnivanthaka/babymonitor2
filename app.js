@@ -17,9 +17,20 @@ app.get('/', function(req, res){
 app.get('/shutdown', function(req, res){
 	//console.log('Shutdown recieved');
 	control.shutdown();
+	res.send('{state: "success"}');
+	
+	
 });
 app.get('/restart', function(req, res){
 	control.restart();
+	res.send('{state: "success"}');
+
+});
+app.get('/restartService', function(req, res){
+	control.restartService();
+        res.send('{state: "success"}');
+        
+
 });
 
 var motionEvents = [];
