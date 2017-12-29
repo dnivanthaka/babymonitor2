@@ -19,6 +19,7 @@
     <![endif]-->
     <style type="text/css">
 	.top-buffer { margin-top:20px; }
+        .btn-padding { margin: 10px; }
     </style>
   </head>
   <body>
@@ -35,18 +36,18 @@
       <a class="navbar-brand" href="#">BabyMonitor2</a>
     </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Device</a></li>
         </ul>
-     </div>
+    </div>-->
     </div>
     </nav>
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
-                            <img src="images/no_stream.jpg" width="320" height="240" id="liveStream"/>
+                            <img src="images/no_stream.jpg" width="320" height="240" class="img-thumbnail" id="liveStream"/>
 		</div>
 		<!--<div class="col-xs-6 col-md-4"></div>-->
 	</div>
@@ -57,15 +58,8 @@
                         <div class="panel-body">
                           Temperature: <span id="envTemp"></span>&deg;C Humidity: <span id="envHum"></span>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">Motion Events</div>
-                        <!--<div class="panel-body">
-                        </div>-->
+                        <h4>Motion Events</h4>
                         <ul class="list-group">
-                            <li class="list-group-item"><h3>Date/Time</h3></li>
                             <li class="list-group-item">
                                 <ul>
                                     <li>Event 1</li>
@@ -74,6 +68,20 @@
                                 </ul>
                             </li>
                         </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Device Control</div>
+                        <div class="panel-body">
+                            <div class="text-center">
+                                <ul class="list-unstyled">
+                                    <li><a href="#" class="btn btn-danger btn-padding">Shutdown</a></li>
+                                    <li><a href="#" class="btn btn-warning btn-padding">Restart</a></li>
+                                    <li><a href="#" class="btn btn-primary btn-padding">Service Restart</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
         </div>
@@ -90,6 +98,9 @@
       });
       socket.on('motionData', function(data){
 	console.log(data);
+      });
+      socket.on('controlData', function(data){
+        console.log(data);
       });
       
     </script>
