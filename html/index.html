@@ -126,11 +126,12 @@
                         var action = $(this).html();
                         var endPoint = $(this).attr('data-endPoint');
 
-                        if(!confirm('Are you sure you want to '+action+' ?')){
-                                 e.preventDefault();
+                        e.preventDefault();
+
+                        if(!confirm('Are you sure you want to '+action+' ?')){                                 
                                 return false;
                         }
-                        alert(action + ' - '+endPoint);
+                        //alert(action + ' - '+endPoint);
                        $.get('/'+endPoint, function(data, status){
                                 console.log(data);
                         });
