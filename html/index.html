@@ -134,7 +134,8 @@
                         //alert(action + ' - '+endPoint);
                        $.get('/'+endPoint, function(data, status){
                                 console.log(data);
-                        });
+                                console.log(data.status); 
+                        }, 'json');
                 });
 	}
     </script>
