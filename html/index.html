@@ -76,9 +76,9 @@
                         <div class="panel-body">
                             <div class="text-center">
                                 <ul class="list-unstyled">
-                                    <li><a href="#" class="btn btn-danger btn-padding">Shutdown</a></li>
-                                    <li><a href="#" class="btn btn-warning btn-padding">Restart</a></li>
-                                    <li><a href="#" class="btn btn-primary btn-padding">Service Restart</a></li>
+                                    <li><a href="#" class="btn btn-danger btn-padding deviceControl" data-endPoint="shutdown">Shutdown</a></li>
+                                    <li><a href="#" class="btn btn-warning btn-padding deviceControl" data-endPoint="restart">Restart</a></li>
+                                    <li><a href="#" class="btn btn-primary btn-padding deviceControl" data-endPoint="restartService">Service Restart</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -87,9 +87,9 @@
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
       var socket = io.connect();
       socket.on('envData', function(data){
         //console.log(data);
@@ -104,7 +104,7 @@
       });
       
     </script>
-    <script>
+    <script type="text/javascript">
 	window.onload = function(){
 		var url = window.location.href;
 		if(url.split(":").length > 2){
@@ -122,6 +122,19 @@
 		//updateMotionStatus();
 		//setTimeout(function(){soundAlarm()}, 5000);
 		//setInterval(function(){updateMotionStatus();updateTemperature();}, 5000);
+                $('.deviceControl').on('click', function(e){
+                        var action = this.html();
+                        var endPoint = this.data('endPoint');
+
+                        if(!confirm('Are you sure you want to '+action+' ?')){
+                                 e.preventDefault();
+                                return false;
+                        }
+                        alert(action + ' - '+endPoint);
+                       $.get('/'+endPoint, function(data, status){
+                                console.log(data);
+                        });
+                });
 	}
     </script>
   </body>
